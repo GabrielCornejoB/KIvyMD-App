@@ -11,9 +11,9 @@ NavigationLayout:
             BoxLayout:
                 orientation: 'vertical'
                 MDToolbar:
-                    title: app.title
+                    title: "Hola mundo"
                     elevation: 10
-                    left_action_items: [["menu", lambda x: nav_drawer.set_state()]]
+                    right_action_items: [["menu", lambda x: nav_drawer.set_state()]]
 
                 ScreenManager:
                     id: screen_manager
@@ -35,16 +35,18 @@ NavigationLayout:
 
     MDNavigationDrawer:
         id: nav_drawer
+        anchor: 'right'
         BoxLayout:
             orientation: 'vertical'
             spacing: "5dp"
+            MDLabel:
+                text: "Cornejoooo"
+                font_name: "fonts/OMEGLE.ttf"
+                font_size: "40sp"
+                halign: "center"
+                size_hint_y: 0.2
 
-            Image:
-                size_hint: None, None
-                pos_hint: {'center_x':0.5}
-                size: "200dp", "200dp"
-                source: "peng.jpg"
-
+            MDSeparator:
             ScrollView:
                 MDList:
                     OneLineIconListItem:
@@ -86,3 +88,12 @@ NavigationLayout:
                             nav_drawer.set_state()
                         IconLeftWidget:
                             icon: "weight-lifter"
+                    Widget:
+
+            BoxLayout:
+                orientation: 'horizontal'
+                MDIconButton:
+                    icon: "information"
+                Widget:
+                MDIconButton:
+                    icon: "dice-6"
