@@ -1,0 +1,88 @@
+#: include MainMenu.kv
+#: include Notes.kv
+#: include ClosedDoor.kv
+#: include Diet.kv
+#: include Gym.kv
+
+NavigationLayout:
+    id: nav_layout
+    ScreenManager:
+        Screen:
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: app.title
+                    elevation: 10
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state()]]
+
+                ScreenManager:
+                    id: screen_manager
+                    MainMenu:
+                        id: main_menu
+                        name: "main_menu"
+                    Notes:
+                        id: notes
+                        name: "notes"
+                    ClosedDoor:
+                        id: closed_door
+                        name: "closed_door"
+                    Diet:
+                        id: diet
+                        name: "diet"
+                    Gym:
+                        id: gym
+                        name: "gym"
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: "5dp"
+
+            Image:
+                size_hint: None, None
+                pos_hint: {'center_x':0.5}
+                size: "200dp", "200dp"
+                source: "peng.jpg"
+
+            ScrollView:
+                MDList:
+                    OneLineIconListItem:
+                        text: "Menu principal"
+                        on_release:
+                            screen_manager.current = "main_menu"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "home"
+
+                    OneLineIconListItem:
+                        text: "Notas"
+                        on_release:
+                            screen_manager.current = "notes"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "note"
+
+                    OneLineIconListItem:
+                        text: "Cerre la puerta?"
+                        on_release:
+                            screen_manager.current = "closed_door"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "gate"
+
+                    OneLineIconListItem:
+                        text: "Alimentacion"
+                        on_release:
+                            screen_manager.current = "diet"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "food"
+
+                    OneLineIconListItem:
+                        text: "Rutina gym"
+                        on_release:
+                            screen_manager.current = "gym"
+                            nav_drawer.set_state()
+                        IconLeftWidget:
+                            icon: "weight-lifter"
